@@ -4,25 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>LearningGrounds.xcscheme</key>
+		<key>Pods-LearningGrounds.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>something.xcscheme</key>
+		<key>Pods-something.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>91EA9F141D4FE6AD00F14832</key>
+		<key>69C1EC22743F9B636B3B2C8A413A3FC7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>91EA9F9F1D529BC800F14832</key>
+		<key>C97D78B0F49323B0AF0FFF03BA17D6AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

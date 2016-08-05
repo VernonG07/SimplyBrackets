@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+protocol AddNewGame {
+    func updateData(data: GameObject)
+}
+
+protocol AddNewMatchup{
+    func updateData(data: MatchupObject)
+}

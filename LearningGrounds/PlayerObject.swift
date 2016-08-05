@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+class PlayerObject {
+    let playerName: String!
+    
+    init(playerName: String!) {
+        self.playerName = playerName
+    }
+}

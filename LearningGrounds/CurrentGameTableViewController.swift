@@ -8,10 +8,41 @@
 
 import UIKit
 
-class CurrentGameTableViewController: UITableViewController {
+class CurrentGameTableViewController: UITableViewController, AddNewMatchup{
+    @IBOutlet var mTableView: UITableView!
+    
+    //Current Game
+    var mGame: GameObject?
+    var matchups = [MatchupObject]()
+    
+    func updateData(data: MatchupObject) {
+        matchups += [data]
+        mTableView.reloadData()
+    }
+    
+    @IBAction func unwindToCurrentGameTable(sender: UIStoryboardSegue) {
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "openNewMatchup" {
+            let uiNavigationController = segue.destinationViewController as! UINavigationController
+            let addMatchupVC = uiNavigationController.topViewController as! AddMatchupController
+            addMatchupVC.delegate = self
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mTableView.dataSource = self
+        mTableView.delegate = self
+        
+        if mGame!.gameName != nil {
+            self.title = mGame?.gameName!
+        }
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,23 +60,30 @@ class CurrentGameTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return matchups.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cellIdentifier = "TableViewCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! TableViewCell
 
         // Configure the cell...
-
+        
+        let playOne = matchups[indexPath.row].playerOne.playerName!
+        let playTwo = matchups[indexPath.row].playerTwo.playerName!
+        
+        cell.teamOneLabel.text = playOne
+        cell.teamTwoLabel.text = playTwo
+        
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
@@ -91,5 +129,4 @@ class CurrentGameTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
 }

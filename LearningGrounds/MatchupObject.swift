@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class MatchupObject {
+    
+    let playerOne : PlayerObject!
+    let playerTwo : PlayerObject!
+    
+    init(playerOne: PlayerObject!, playerTwo:PlayerObject!) {
+        self.playerOne = playerOne
+        self.playerTwo = playerTwo
+    }
+    
+}

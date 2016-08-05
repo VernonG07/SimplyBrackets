@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class GameObject {
+    let gameName: String!
+    let isRandom: Bool!
+    let gameId: Int!
+    
+    init(gameId: Int, gameName: String, isRandom: Bool) {
+        self.gameName = gameName
+        self.isRandom = isRandom
+        self.gameId = gameId
+    }
+}

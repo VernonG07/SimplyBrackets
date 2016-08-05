@@ -9,7 +9,10 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var teamOneLabel: UILabel!
+    @IBOutlet weak var teamTwoLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

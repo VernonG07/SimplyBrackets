@@ -11,15 +11,13 @@ import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddNewGame {
 
-    
+    var mGame :GameObject!
     static let done = "done"
     static let newGameModal = "newGameModal"
+    static let gameView = "GameSegue"
     static let cell = "cell"
     static let rowHeight: CGFloat! = 75.0
-    
-    let coreDatadelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    
-    
+
     @IBOutlet weak var mTable: UITableView!
     
     @IBAction func unwindToGamesList(sender: UIStoryboardSegue) {
@@ -30,10 +28,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(segue.identifier)
+        
+        let uiNavigationController = segue.destinationViewController as! UINavigationController
+        
+        
         if segue.identifier == ViewController.newGameModal {
-            let uiNavigationController = segue.destinationViewController as! UINavigationController
             let addGameVC = uiNavigationController.topViewController as! AddGameController
             addGameVC.delegate = self
+        } else if segue.identifier == ViewController.gameView {
+            let gameVC = uiNavigationController.topViewController as! CurrentGameTableViewController
+
+            gameVC.mGame = mGame
         }
     }
     
@@ -49,8 +54,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if gameItems.count > 0 {
             return
         }
-        
-        gameItems.append(GameObject(gameName: "my game", isRandom: false))
     }
 
     
@@ -73,10 +76,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("fuckyea", sender: self)
+        performSegueWithIdentifier("GameSegue", sender: self)
+        
     }
     
     func updateData(data: GameObject) {
+        mGame = data
         let newIndexPath = NSIndexPath(forRow: gameItems.count, inSection: 0)
         gameItems.append(data)
         mTable.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)

@@ -6,4 +6,12 @@
 //  Copyright © 2016 Matt Griffin. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class NavController : UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+}
