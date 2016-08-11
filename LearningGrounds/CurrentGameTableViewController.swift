@@ -15,9 +15,19 @@ class CurrentGameTableViewController: UITableViewController, AddNewMatchup{
     var mGame: GameObject?
     var matchups = [MatchupObject]()
     
+    var currentRound : Int! = 1
+    
     func updateData(data: MatchupObject) {
-        matchups += [data]
+
+        matchups.append(data)
+        if NSKeyedArchiver.archiveRootObject(matchups, toFile: data.returnURL().path!) {
+            print ("saved matchups")
+        } else {
+            print( "save failed")
+        }
+
         mTableView.reloadData()
+        
     }
     
     @IBAction func unwindToCurrentGameTable(sender: UIStoryboardSegue) {
@@ -25,25 +35,50 @@ class CurrentGameTableViewController: UITableViewController, AddNewMatchup{
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+
         if segue.identifier == "openNewMatchup" {
             let uiNavigationController = segue.destinationViewController as! UINavigationController
             let addMatchupVC = uiNavigationController.topViewController as! AddMatchupController
             addMatchupVC.delegate = self
+            addMatchupVC.gameId = mGame?.gameId!
+        } else if segue.identifier == "nextround" {
+            let uiNavigationController = segue.destinationViewController as! UINavigationController
+            let startNewRoundVC = uiNavigationController.topViewController as! CurrentGameTableViewController
+            startNewRoundVC.mGame = mGame
+            startNewRoundVC.currentRound = currentRound + 1
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mTableView.separatorStyle = .None
         mTableView.dataSource = self
         mTableView.delegate = self
         
         if mGame!.gameName != nil {
-            self.title = mGame?.gameName!
+            self.title = (mGame?.gameName!)! + "(Round \(currentRound))"
         }
         
+        if currentRound != 1 {
+            self.navigationItem.rightBarButtonItem?.enabled = false
+        }
 
+        if currentRound == 1 {
+            for item in self.toolbarItems! {
+                if item.title == "Previous Round" {
+                    item.enabled = false
+                }
+            }
+        }
+        
+        
+        let matchups = NSKeyedUnarchiver.unarchiveObjectWithFile(MatchupObject.ArchiveBaseURL.path! + mGame!.gameId) as? [MatchupObject]
+        
+        if matchups?.count > 0 {
+            self.matchups = matchups!
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -75,8 +110,8 @@ class CurrentGameTableViewController: UITableViewController, AddNewMatchup{
 
         // Configure the cell...
         
-        let playOne = matchups[indexPath.row].playerOne.playerName!
-        let playTwo = matchups[indexPath.row].playerTwo.playerName!
+        let playOne = matchups[indexPath.row].playerOne
+        let playTwo = matchups[indexPath.row].playerTwo
         
         cell.teamOneLabel.text = playOne
         cell.teamTwoLabel.text = playTwo

@@ -13,6 +13,7 @@
 		91B478961D542ED100B042B0 /* MatchupObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B478951D542ED100B042B0 /* MatchupObject.swift */; };
 		91B478981D542EF400B042B0 /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B478971D542EF400B042B0 /* PlayerObject.swift */; };
 		91B4789A1D54315400B042B0 /* AddMatchupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B478991D54315400B042B0 /* AddMatchupController.swift */; };
+		91B4789C1D59371300B042B0 /* KeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B4789B1D59371300B042B0 /* KeyManager.swift */; };
 		91EA9F191D4FE6AD00F14832 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EA9F181D4FE6AD00F14832 /* AppDelegate.swift */; };
 		91EA9F1B1D4FE6AD00F14832 /* GamesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EA9F1A1D4FE6AD00F14832 /* GamesListViewController.swift */; };
 		91EA9F1E1D4FE6AD00F14832 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91EA9F1C1D4FE6AD00F14832 /* Main.storyboard */; };
@@ -21,7 +22,6 @@
 		91EA9F7E1D514B7500F14832 /* AddGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EA9F7D1D514B7500F14832 /* AddGameController.swift */; };
 		91EA9F851D516FC600F14832 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EA9F841D516FC600F14832 /* GameObject.swift */; };
 		91EA9F871D52430300F14832 /* AddNewGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EA9F861D52430300F14832 /* AddNewGameDelegate.swift */; };
-		91EA9F951D5285FF00F14832 /* somemodel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 91EA9F931D5285FF00F14832 /* somemodel.xcdatamodeld */; };
 		91EA9FA31D529BC800F14832 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EA9FA21D529BC800F14832 /* AppDelegate.swift */; };
 		91EA9FA51D529BC800F14832 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EA9FA41D529BC800F14832 /* ViewController.swift */; };
 		91EA9FA81D529BC800F14832 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91EA9FA61D529BC800F14832 /* Main.storyboard */; };
@@ -40,6 +40,7 @@
 		91B478951D542ED100B042B0 /* MatchupObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchupObject.swift; sourceTree = "<group>"; };
 		91B478971D542EF400B042B0 /* PlayerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerObject.swift; sourceTree = "<group>"; };
 		91B478991D54315400B042B0 /* AddMatchupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMatchupController.swift; sourceTree = "<group>"; };
+		91B4789B1D59371300B042B0 /* KeyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyManager.swift; sourceTree = "<group>"; };
 		91EA9F151D4FE6AD00F14832 /* LearningGrounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningGrounds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91EA9F181D4FE6AD00F14832 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91EA9F1A1D4FE6AD00F14832 /* GamesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		91EA9F7D1D514B7500F14832 /* AddGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGameController.swift; sourceTree = "<group>"; };
 		91EA9F841D516FC600F14832 /* GameObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
 		91EA9F861D52430300F14832 /* AddNewGameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewGameDelegate.swift; sourceTree = "<group>"; };
-		91EA9F941D5285FF00F14832 /* somemodel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = somemodel.xcdatamodel; sourceTree = "<group>"; };
 		91EA9FA01D529BC800F14832 /* something.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = something.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91EA9FA21D529BC800F14832 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91EA9FA41D529BC800F14832 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -181,9 +181,9 @@
 			isa = PBXGroup;
 			children = (
 				91EA9F841D516FC600F14832 /* GameObject.swift */,
-				91EA9F931D5285FF00F14832 /* somemodel.xcdatamodeld */,
 				91B478951D542ED100B042B0 /* MatchupObject.swift */,
 				91B478971D542EF400B042B0 /* PlayerObject.swift */,
+				91B4789B1D59371300B042B0 /* KeyManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -414,8 +414,8 @@
 				91EA9F871D52430300F14832 /* AddNewGameDelegate.swift in Sources */,
 				91EA9F851D516FC600F14832 /* GameObject.swift in Sources */,
 				91B4789A1D54315400B042B0 /* AddMatchupController.swift in Sources */,
-				91EA9F951D5285FF00F14832 /* somemodel.xcdatamodeld in Sources */,
 				914982631D542A4400DBD224 /* CurrentGameTableViewController.swift in Sources */,
+				91B4789C1D59371300B042B0 /* KeyManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,16 +648,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		91EA9F931D5285FF00F14832 /* somemodel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				91EA9F941D5285FF00F14832 /* somemodel.xcdatamodel */,
-			);
-			currentVersion = 91EA9F941D5285FF00F14832 /* somemodel.xcdatamodel */;
-			path = somemodel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		91EA9FA91D529BC800F14832 /* something.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

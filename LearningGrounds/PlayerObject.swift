@@ -10,8 +10,10 @@ import Foundation
 
 class PlayerObject {
     let playerName: String!
+    let playerId: String!
     
-    init(playerName: String!) {
+    init(playerName: String!, playerId: String!) {
+        self.playerId = playerId
         self.playerName = playerName
     }
 }

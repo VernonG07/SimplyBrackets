@@ -11,6 +11,7 @@ import UIKit
 class AddMatchupController: UIViewController {
     
     var delegate: AddNewMatchup?
+    var gameId : String!
     
     @IBOutlet weak var playerOne: UITextField!
     @IBOutlet weak var playerTwo: UITextField!
@@ -21,7 +22,6 @@ class AddMatchupController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        print("sending data")
-         self.delegate?.updateData(MatchupObject(playerOne: PlayerObject(playerName: playerOne.text), playerTwo: PlayerObject(playerName: playerTwo.text)))
+        self.delegate?.updateData(MatchupObject(matchupId: NSUUID().UUIDString, gameId: gameId ,playerOne: PlayerObject(playerName: playerOne.text, playerId: NSUUID().UUIDString), playerTwo: PlayerObject(playerName: playerTwo.text, playerId: NSUUID().UUIDString))!)
     }
 }

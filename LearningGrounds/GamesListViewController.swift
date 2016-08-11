@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddNewGame {
 
     var mGame :GameObject!
@@ -17,32 +18,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     static let gameView = "GameSegue"
     static let cell = "cell"
     static let rowHeight: CGFloat! = 75.0
-
+    
+    var gameItems = [GameObject]()
+    
     @IBOutlet weak var mTable: UITableView!
     
     @IBAction func unwindToGamesList(sender: UIStoryboardSegue) {
+        print (sender.identifier)
         if sender.identifier == ViewController.done {
             
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print(segue.identifier)
-        
         let uiNavigationController = segue.destinationViewController as! UINavigationController
-        
-        
         if segue.identifier == ViewController.newGameModal {
             let addGameVC = uiNavigationController.topViewController as! AddGameController
             addGameVC.delegate = self
         } else if segue.identifier == ViewController.gameView {
             let gameVC = uiNavigationController.topViewController as! CurrentGameTableViewController
-
             gameVC.mGame = mGame
         }
     }
     
-    var gameItems = [GameObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +48,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         mTable.delegate = self
         mTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: ViewController.cell)
         mTable.rowHeight = ViewController.rowHeight
+        
+        let games = NSKeyedUnarchiver.unarchiveObjectWithFile(GameObject.ArchiveURL.path!) as? [GameObject]
+        
+        if games != nil {
+            
+            for item in games! {
+                gameItems.append(item)
+            }
+        }
         
         if gameItems.count > 0 {
             return
@@ -76,6 +83,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        mGame = gameItems[indexPath.row]
         performSegueWithIdentifier("GameSegue", sender: self)
         
     }
@@ -85,6 +93,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let newIndexPath = NSIndexPath(forRow: gameItems.count, inSection: 0)
         gameItems.append(data)
         mTable.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+        
+        if NSKeyedArchiver.archiveRootObject(gameItems, toFile: GameObject.ArchiveURL.path!) {
+            print ("saved games successfully")
+        } else {
+            print( "save failed")
+        }
     }
     
     
